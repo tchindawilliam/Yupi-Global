@@ -3,8 +3,7 @@
   <base href="https://">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yupi Global Yaoundé Cameroun - Solutions naturelles pour votre bien-être</title>
-  <link rel="shortcut icon" href="y.jpg"/>
+  <title>Yupi Santé - Solutions naturelles pour votre bien-être</title>
 
   <style>
     /* Variables CSS */
@@ -75,6 +74,19 @@
       cursor: pointer;
       color: white;
       font-size: 1.5rem;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      background: var(--primary);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .mobile-menu a {
@@ -276,7 +288,25 @@
       }
 
       .mobile-menu {
-        display: flex;
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .cta-button {
+        padding: 0.8rem 1.5rem;
       }
     }
   </style>
@@ -288,7 +318,7 @@
 
 <header class="header">
   <nav class="nav">
-    <a href="index.html" class="logo">Yupi Global Cameroun</a>
+    <a href="/" class="logo">Yupi Santé</a>
     <div class="menu-toggle" id="menuToggle">
       <i class="fas fa-bars"></i>
     </div>
@@ -323,7 +353,7 @@
   <h2 id="talla">Nos Solutions Santé</h2>
   <div class="products">
     <div class="product-card">
-      <img src="AlkaPlus.jpg" alt="Alka Plus Multi Minerals Drops" class="product-image">
+      <img src="alkaplus.jpg" alt="Alka Plus Multi Minerals Drops" class="product-image">
       <div class="product-info">
         <h3>Alka Plus</h3>
         <p>Multi Minerals Drops pour une santé optimale et un équilibre parfait.</p>
@@ -332,7 +362,7 @@
     </div>
 
     <div class="product-card">
-      <img src="detoxHealth.jpg" alt="Detox Health Advanced Formulation" class="product-image">
+      <img src="detoxhealth.jpg" alt="Detox Health Advanced Formulation" class="product-image">
       <div class="product-info">
         <h3>Detox Health</h3>
         <p>Formulation avancée pour une détoxification naturelle et efficace.</p>
@@ -341,7 +371,7 @@
     </div>
 
     <div class="product-card">
-      <img src="immunoBoost.jpg" alt="Immuno Boost Advanced Immune Defense" class="product-image">
+      <img src="immunoboost.jpg" alt="Immuno Boost Advanced Immune Defense" class="product-image">
       <div class="product-info">
         <h3>Immuno Boost</h3>
         <p>Renforcez votre système immunitaire naturellement.</p>
@@ -361,7 +391,7 @@
       <h3>Contact</h3>
       <p>Email: wtchinda62@gmail.com</p>
       <p>Tél: +237 678 094 678</p>
-      <p>Adresse: Yaoundé Cameroun, titi garage</p>
+      <p>Adresse: Cameroun, Yaoundé - Mobile Omnisport</p>
     </div>
     <div>
       <h3>Suivez-nous</h3>
@@ -375,42 +405,42 @@
 </footer>
 
 <script>
-// Animation au défilement
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px'
-};
+  // Animation au défilement
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px'
+  };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.product-card').forEach((card) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(50px)';
+    observer.observe(card);
   });
-}, observerOptions);
 
-document.querySelectorAll('.product-card').forEach((card) => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(50px)';
-  observer.observe(card);
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+        behavior: 'smooth'
+      });
     });
   });
-});
 
-// Mobile menu toggle
-document.getElementById('menuToggle').addEventListener('click', function() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
-});
+  // Mobile menu toggle
+  document.getElementById('menuToggle').addEventListener('click', function() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'hidden' : 'flex';
+  });
 </script>
 
 </body>
