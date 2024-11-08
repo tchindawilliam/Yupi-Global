@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alka Plus - Yupi Santé</title>
+  <link rel="shortcut icon" href="y.jpg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #6a1b9a;
+      --secondary: #2196f3;
+      --accent: #ff4081;
+      --light: #f5f5f5;
+      --dark: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--light);
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem;
+      position: fixed;
+      width: 100%;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .product-section {
+      padding-top: 100px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .product-image {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .product-image img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-details {
+      padding: 2rem;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .product-title {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      animation: slideIn 1s ease-out;
+    }
+
+    .product-description {
+      margin-bottom: 2rem;
+    }
+
+    .benefits-list {
+      list-style: none;
+    }
+
+    .benefit-item {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transform: translateX(-50px);
+      opacity: 0;
+      animation: slideIn 0.5s ease-out forwards;
+    }
+
+    .benefit-item i {
+      color: var(--accent);
+      margin-right: 1rem;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .buy-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .buy-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3);
+    }
+
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 2rem;
+      margin-top: 4rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      margin-right: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .product-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .product-image {
+        order: -1;
+      }
+
+      .benefit-item {
+        text-align: left;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: white;
+        cursor: pointer;
+      }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <a href="/" class="nav-link">Yupi Santé</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="alka.html" class="nav-link">Alka Plus</a>
+        <a href="immuno.html" class="nav-link">Immuno Boost</a>
+        <a href="detox.html" class="nav-link">Detox Health</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
+    </nav>
+  </header>
+
+  <section class="product-section">
+    <div class="product-container">
+      <div class="product-image">
+        <img src="alkaplus.jpg" alt="Alka Plus Multi Minerals Drops bottle with water ripple effect">
+      </div>
+      
+      <div class="product-details">
+        <h1 class="product-title">Alka Plus</h1>
+        <p class="product-description">
+          Découvrez la puissance des minéraux essentiels avec Alka Plus, votre solution complète pour une santé optimale.
+        </p>
+        
+        <ul class="benefits-list">
+          <li class="benefit-item" style="animation-delay: 0.1s">
+            <i class="fas fa-heart"></i>Réduit le cholestérol
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.2s">
+            <i class="fas fa-cell"></i>Facilite l'absorption des minéraux par les cellules
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.3s">
+            <i class="fas fa-eye"></i>Favorise une bonne vision et une belle peau
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.4s">
+            <i class="fas fa-shield-virus"></i>Puissant antioxydant neutralisant les radicaux libres
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.5s">
+            <i class="fas fa-pump-medical"></i>Nettoie les organes vitaux des toxines
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.6s">
+            <i class="fas fa-battery-full"></i>Améliore la digestion et l'énergie
+          </li>
+          <li class="benefit-item" style="animation-delay: 0.7s">
+            <i class="fas fa-dna"></i>Protège l'ADN des effets de l'oxydation
+          </li>
+        </ul>
+        
+        <a href="contact.html" class="buy-button">
+          Commander Maintenant
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: wtchinda62@gmail.com</p>
+        <p>Téléphone: +237 678 094 678</p>
+        <p>Adresse: Yaoundé Cameroun, titi garage</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Nos Produits</h3>
+        <ul class="footer-links">
+          <li><a href="alka.html">Alka Plus</a></li>
+          <li><a href="immuno.html">Immuno Boost</a></li>
+          <li><a href="detox.html">Detox Health</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Suivez-nous</h3>
+        <div class="social-links">
+          <a href=""><i class="fab fa-facebook"></i></a>
+          <a href=""><i class="fab fa-instagram"></i></a>
+          <a href=""><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Animate benefits on scroll
+      const benefits = document.querySelectorAll('.benefit-item');
+      
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateX(0)';
+          }
+        });
+      }, observerOptions);
+      
+      benefits.forEach(benefit => {
+        observer.observe(benefit);
+      });
+
+      // Toggle mobile navigation
+      const navToggle = document.querySelector('.nav-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
